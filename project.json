@@ -1,0 +1,27 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "C2566E52-4",
+    "build_number": 4,
+    "build_time": 1608389923115,
+    "release": false
+  },
+  "encryptLevel": 1,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "莎莎",
+  "optimization": {
+    "removeOpenCv": true,
+    "unusedResources": false
+  },
+  "packageName": "com.ss",
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}
