@@ -426,37 +426,41 @@ ui.clearIds.on('click', () => {
 function startfloaty () {
   const runFloaty = floaty.window(
     <horizontal gravity='center'>
-      <button id='start'>开始</button>
-      <button id='stop'>停止</button>
+      <button id='stop'>始/停</button>
     </horizontal>
   )
-  runFloaty.setPosition(w - 600, h - 400)
+  runFloaty.setPosition(w - 300, h - 200)
   runFloaty.stop.on('click', () => {
-    saveCache()
-    try {
-      if (mainThread) {
-        mainThread.interrupt()
-      }
-    } catch (e) {
-      myLog('退出异常')
-    } finally {
-      mainThread = null
-    }
-    myLog('已停止', 0)
-    console.show()
-  })
-  runFloaty.start.on('click', () => {
+    let opera="开始";
     try {
       if ((mainThread === undefined || mainThread == null)) {
         myLog('正在执行任务，请不要操作，影响运行', 0)
         mainThread = threads.start(start)
-      } else {
-        myLog('任务已在运行中，请不要重新运行', 0)
+      }else if (mainThread) {
+        opera='停止'
+        saveCache()
+        mainThread.interrupt()
+        myLog('已停止', 0)
+        console.show()
       }
-    } catch (error) {
-      myLog('运行错误，请重新运行，或联系管理员')
+    } catch (e) {
+      myLog(opera+'异常，重试或联系管理员')
+    } finally {
+      if(opera=='停止')mainThread = null
     }
   })
+  // runFloaty.start.on('click', () => {
+  //   try {
+  //     if ((mainThread === undefined || mainThread == null)) {
+  //       myLog('正在执行任务，请不要操作，影响运行', 0)
+  //       mainThread = threads.start(start)
+  //     } else {
+  //       myLog('任务已在运行中，请不要重新运行', 0)
+  //     }
+  //   } catch (error) {
+  //     myLog('运行错误，请重新运行，或联系管理员')
+  //   }
+  // })
   return runFloaty
 }
 // -----------------------------------------------------微信函数--------------------------------------------------------------
